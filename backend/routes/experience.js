@@ -8,10 +8,11 @@ router.post('/create', passport.authenticate("jwt", {session: false}), async(req
     //identifying the user is calling it
     const user = req.user
     //created the experince object
-    const experienceObj = {companyName, position, startDate, endDate, description} = req.body
-    if(!experienceObj.companyName || !experienceObj.position){
+    const {companyName, position, startDate, endDate, description} = req.body
+    if(!companyName || !position){
         res.status(403).json({err: "Invalid entry"})
     }
+    const experienceObj = {companyName, position, startDate, endDate, description}
     const newExperience = await Experience.create(experienceObj)
     //added experience to user
     user.experiences.push(newExperience._id)

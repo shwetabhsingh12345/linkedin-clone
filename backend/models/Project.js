@@ -9,8 +9,8 @@ const ProjectSchema = new mongoose.Schema({
          type: String, 
          required: false 
         },
-        links:[
-            {
+    links:[
+        {
             types: String
         }
     ]

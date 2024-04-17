@@ -7,6 +7,8 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
 const authRoutes = require('./routes/auth')
 const experienceRoutes = require('./routes/experience')
+const skillRoutes = require('./routes/skill')
+const projectRoutes = require('./routes/project')
 
 app.use(express.json())
 
@@ -39,6 +41,9 @@ passport.use(
 
 app.use("/auth", authRoutes)
 app.use("/experience", experienceRoutes)
+app.use("/skill", skillRoutes)
+app.use("/project", projectRoutes)
+
 app.listen(3000, ()=>{
     console.log("Running server on Port 3000")
 })
