@@ -11,7 +11,7 @@ const ProjectSchema = new mongoose.Schema({
         },
     links:[
         {
-            types: String
+            type: String
         }
     ]
 })

@@ -23,20 +23,21 @@ let opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 opts.secretOrKey = process.env.JWT_SECRET
 passport.use(
-    new Strategy(opts, function(jwt_payload, done){
-        User.findOne({_id: jwt_payload.identifier}, function(err, user){
-            if(err){
-                done(err, false)
-            }
+    new Strategy(opts, async function(jwt_payload, done){
+        try{
+            const user = await User.findOne({_id: jwt_payload.identifier})
             if(user){
                 done(null, user)
             }
             else{
                 done(null, false)
             }
-        })
-    }
-    )
+        }catch(err){
+            if(err){
+                done(err, false)
+            }
+        }
+    })
 )
 
 app.use("/auth", authRoutes)
@@ -44,6 +45,6 @@ app.use("/experience", experienceRoutes)
 app.use("/skill", skillRoutes)
 app.use("/project", projectRoutes)
 
-app.listen(3000, ()=>{
+app.listen(8000, ()=>{
     console.log("Running server on Port 3000")
 })

@@ -18,7 +18,7 @@ router.post('/create', passport.authenticate('jwt', {session:false}), async(req,
     user.skills.push(newSkill._id)
     await user.save()
 //return a response
-res.status(200).json(newExperience)
+res.status(200).json(newSkill)
 })
 
 module.exports = router
