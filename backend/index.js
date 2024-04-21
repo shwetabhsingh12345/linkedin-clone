@@ -9,7 +9,9 @@ const authRoutes = require('./routes/auth')
 const experienceRoutes = require('./routes/experience')
 const skillRoutes = require('./routes/skill')
 const projectRoutes = require('./routes/project')
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
 
 mongoose.connect("mongodb+srv://notebook-db:"+process.env.MONGO_PASSWORD+"@cluster0.sl60upm.mongodb.net/linkedin-clone").then((x)=>{
@@ -46,5 +48,5 @@ app.use("/skill", skillRoutes)
 app.use("/project", projectRoutes)
 
 app.listen(8000, ()=>{
-    console.log("Running server on Port 3000")
+    console.log("Running server on Port 8000")
 })
